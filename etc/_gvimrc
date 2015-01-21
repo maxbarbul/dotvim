@@ -1,0 +1,4 @@
+set vb t_vb=
+set guioptions=aegiLt
+au GUIEnter * set tb=
+

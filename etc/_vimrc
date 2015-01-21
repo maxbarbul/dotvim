@@ -1,0 +1,295 @@
+let mapleader = ","
+
+"run plugins manager Vundle
+source ~/.vim/etc/initVundle
+
+set mouse=a
+set so=7
+set mousehide  " Hide mouse after chars typed
+
+set t_Co=256
+" let g:molokai_original = 1
+syntax on
+" colorscheme molokai
+colorscheme iceberg
+
+" Turn on the WiLd menu
+set wildmenu
+set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn,*.png,*.gif,*.jpg,*.zip
+
+highlight ColorColumn ctermbg=3
+
+set cursorline
+
+" Make nerdtree of size 40 cols
+let g:NERDTreeWinSize = 40
+
+" show mode in status bar (insert/replace/...)
+set showmode
+" show typed command in status bar
+set showcmd
+" show cursor position in status bar
+set ruler
+
+" relative line numbers
+set relativenumber
+
+" show matching bracket for 0.2 seconds
+set matchtime=2
+" specially for html
+set matchpairs+=<:>
+
+" If you have something highlighted and type a, 
+" it replaces the text, like other editors. 
+" If you type (, however, it wraps the selected 
+" text in parentheses. This is enormously useful.
+vnoremap (  <ESC>`>a)<ESC>`<i(<ESC>
+vnoremap )  <ESC>`>a)<ESC>`<i(<ESC>
+vnoremap {  <ESC>`>a}<ESC>`<i{<ESC>
+vnoremap }  <ESC>`>a}<ESC>`<i{<ESC>
+"vnoremap "  <ESC>`>a"<ESC>`<i"<ESC>
+vnoremap '  <ESC>`>a'<ESC>`<i'<ESC>
+vnoremap `  <ESC>`>a`<ESC>`<i`<ESC>
+vnoremap [  <ESC>`>a]<ESC>`<i[<ESC>
+vnoremap ]  <ESC>`>a]<ESC>`<i[<ESC>
+
+" change tab with Alt + arrow
+map <M-Right> :tabprev<cr>
+map <M-Left> :tabnext<cr>
+
+" Height of the command bar
+set cmdheight=2
+
+" A buffer becomes hidden when it is abandoned
+set hidden
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups and undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set nowrap "Wrap lines
+
+" Empty line before
+nmap [<Space> O<Esc>j
+" Empty line after
+nmap ]<Space> o<Esc>k
+
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> /
+map <c-space> ?
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Close the current buffer
+map <leader>bd :Bclose<cr>
+
+" Close all the buffers
+map <leader>ba :1,1000 bd!<cr>
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+" Remember info about open buffers on close
+set viminfo^=%
+
+set dict+="/home/maksim/.vim/janus/vim/dict/javascript.dict"
+
+set tags=./tags
+""""""""""""""""""""""""""""""
+" => Status line
+""""""""""""""""""""""""""""""
+" Always show the status line
+set laststatus=2
+
+highlight ColorColumn ctermbg=black guibg=#592929
+
+" color >80 symbols
+"if exists('+colorcolumn')
+    "set colorcolumn=81
+"else
+    "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+    "match OverLength /\%81v.\+/
+"endif
+
+" Format the status line
+"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ #%l\ %{fugitive#statusline()}
+
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.js :call DeleteTrailingWS()
+autocmd BufWrite *.css :call DeleteTrailingWS()
+autocmd BufWrite *.php :call DeleteTrailingWS()
+autocmd BufWrite *.html :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
+autocmd BufWrite *.markdown :call DeleteTrailingWS()
+
+"autocmd InsertEnter *.* :colorscheme Mustang
+"autocmd InsertLeave *.* :colorscheme molokai
+
+au BufRead,BufNewFile {*.md,*.mkd,*.markdown} set ft=markdown
+au BufRead,BufNewFile {COMMIT_EDITMSG} set ft=gitcommit
+
+autocmd FileType wimwiki source ~/.vimwikirc
+autocmd FileType markdown source ~/.vimwikirc
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vimgrep searching and cope displaying
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" When you press gv you vimgrep after the selected text
+vnoremap <silent> gv :call VisualSelection('gv')<CR>
+
+" Open vimgrep and put the cursor in the right position
+map <leader>j :vimgrep // **/*.js<left><left><left><left><left><left><left><left><left>
+
+" Open vimgrep and put the cursor in the right position
+map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+
+map <leader>b :BufExplorerHorizontalSplit<CR>
+" Focus on current file in NERDTree
+map <leader>r :NERDTreeFind<cr>
+map <leader>n :NERDTreeToggle<cr>
+
+" Vimgreps in the current file
+map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
+
+" When you press <leader>r you can search and replace the selected text
+vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+" Shortcuts using <leader>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+" Quickly open a buffer for scripbble
+map <leader>q :e ~/buffer<cr>
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
+
+" turn on searhc highlight
+set hlsearch
+" Toggle highlight of search
+noremap <F4> :set hlsearch! hlsearch?<CR>
+" serach while typing
+set incsearch
+
+" case for search
+set ignorecase
+set smartcase
+
+" remove '-' (dash) and '$' from beign a part of a keyword in source code
+set isk-=-
+set isk-=$
+
+set cdpath=/home/maksim/master,/home/maksim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Helper functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
+endfunction
+
+function! VisualSelection(direction) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
+
+" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    en
+    return ''
+endfunction
+
+" Don't close window, when deleting a buffer
+command! Bclose call <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt()
+   let l:currentBufNum = bufnr("%")
+   let l:alternateBufNum = bufnr("#")
+
+   if buflisted(l:alternateBufNum)
+     buffer #
+   else
+     bnext
+   endif
+
+   if bufnr("%") == l:currentBufNum
+     new
+   endif
+
+   if buflisted(l:currentBufNum)
+     execute("bdelete! ".l:currentBufNum)
+   endif
+endfunction
+
