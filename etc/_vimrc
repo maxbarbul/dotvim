@@ -156,7 +156,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ #%l\ %{fugitive#statusline()}
 func! DeleteTrailingWS()
   exe "normal mz"
   %s/\s\+$//ge
-  exe "normal `z"
+  exe "normal `zmz"
 endfunc
 
 autocmd BufWrite *.py :call DeleteTrailingWS()
