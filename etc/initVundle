@@ -61,6 +61,22 @@ Bundle "marijnh/tern_for_vim"
 
 " PHP debugging with XDebug
 Bundle 'joonty/vdebug.git'
+let g:vdebug_options= {
+\    "port" : 9001,
+\    "server" : 'localhost',
+\    "timeout" : 20,
+\    "on_close" : 'detach',
+\    "break_on_open" : 1,
+\    "ide_key" : 'vim',
+\    "path_maps" : {},
+\    "debug_window_level" : 0,
+\    "debug_file_level" : 0,
+\    "debug_file" : "",
+\    "watch_window_style" : 'expanded',
+\    "marker_default" : '⬦',
+\    "marker_closed_tree" : '▸',
+\    "marker_open_tree" : '▾'
+\}
 
 Bundle "tComment"
 nnoremap <leader>/ :TComment<CR>
