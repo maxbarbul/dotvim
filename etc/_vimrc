@@ -1,7 +1,7 @@
 let mapleader = ","
 
 "run plugins manager Vundle
-source ~/.vim/etc/initVundle
+source ~/.vim/etc/initVundle.vim
 
 set mouse=a
 set so=7
