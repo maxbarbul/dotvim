@@ -152,16 +152,16 @@ highlight ColorColumn ctermbg=black guibg=#592929
 "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ #%l\ %{fugitive#statusline()}
 
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+" Delete trailing white space on save
 func! DeleteTrailingWS()
   exe "normal mz"
   %s/\s\+$//ge
   exe "normal `zmz"
 endfunc
 
-autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.js :call DeleteTrailingWS()
 autocmd BufWrite *.css :call DeleteTrailingWS()
+autocmd BufWrite *.less :call DeleteTrailingWS()
 autocmd BufWrite *.php :call DeleteTrailingWS()
 autocmd BufWrite *.html :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
