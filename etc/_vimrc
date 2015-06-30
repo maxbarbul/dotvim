@@ -173,8 +173,8 @@ autocmd BufWrite *.markdown :call DeleteTrailingWS()
 au BufRead,BufNewFile {*.md,*.mkd,*.markdown} set ft=markdown
 au BufRead,BufNewFile {COMMIT_EDITMSG} set ft=gitcommit
 
-autocmd FileType wimwiki source ~/.vimwikirc
-autocmd FileType markdown source ~/.vimwikirc
+autocmd FileType mediawiki source ~/.vim/etc/wiki.vim
+autocmd FileType markdown source ~/.vim/etc/wiki.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
