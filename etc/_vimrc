@@ -83,14 +83,15 @@ set noswapfile
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
-set expandtab
+" set expandtab
+set noexpandtab
 
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
@@ -115,6 +116,9 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
+" nmap <leader><tab> :set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<<cr>:set list<cr>
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 
@@ -129,9 +133,6 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
-set dict+="/home/maksim/.vim/janus/vim/dict/javascript.dict"
-
-set tags=./tags
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
@@ -139,14 +140,6 @@ set tags=./tags
 set laststatus=2
 
 highlight ColorColumn ctermbg=black guibg=#592929
-
-" color >80 symbols
-"if exists('+colorcolumn')
-    "set colorcolumn=81
-"else
-    "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-    "match OverLength /\%81v.\+/
-"endif
 
 " Format the status line
 "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
@@ -162,7 +155,8 @@ endfunc
 autocmd BufWrite *.js :call DeleteTrailingWS()
 autocmd BufWrite *.css :call DeleteTrailingWS()
 autocmd BufWrite *.less :call DeleteTrailingWS()
-autocmd BufWrite *.php :call DeleteTrailingWS()
+" autocmd BufWrite *.py :call DeleteTrailingWS()
+" autocmd BufWrite *.php :call DeleteTrailingWS()
 autocmd BufWrite *.html :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 autocmd BufWrite *.markdown :call DeleteTrailingWS()
@@ -172,9 +166,6 @@ autocmd BufWrite *.markdown :call DeleteTrailingWS()
 
 au BufRead,BufNewFile {*.md,*.mkd,*.markdown} set ft=markdown
 au BufRead,BufNewFile {COMMIT_EDITMSG} set ft=gitcommit
-
-autocmd FileType mediawiki source ~/.vim/etc/wiki.vim
-autocmd FileType markdown source ~/.vim/etc/wiki.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
@@ -188,7 +179,7 @@ map <leader>j :vimgrep // **/*.js<left><left><left><left><left><left><left><left
 " Open vimgrep and put the cursor in the right position
 map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
-map <leader>b :BufExplorerHorizontalSplit<CR>
+map <leader>b :BufExplorerVerticalSplit<CR>
 " Focus on current file in NERDTree
 map <leader>r :NERDTreeFind<cr>
 map <leader>n :NERDTreeToggle<cr>
@@ -228,11 +219,13 @@ set incsearch
 set ignorecase
 set smartcase
 
+noremap <silent> <C-m>          :!node %<CR>
+
 " remove '-' (dash) and '$' from beign a part of a keyword in source code
 set isk-=-
 set isk-=$
 
-set cdpath=/home/maksim/master,/home/maksim
+set cdpath=/home/maksym/work,/home/maksym
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
