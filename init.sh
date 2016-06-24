@@ -1,4 +1,4 @@
-set VIM_DIR = ~/.vim
+set VIM_DIR=~/.vim
 
 mkdir bundle
 git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim

@@ -11,7 +11,9 @@ set t_Co=256
 " let g:molokai_original = 1
 syntax on
 " colorscheme molokai
-colorscheme iceberg
+set background=dark
+" colorscheme solarized
+colorscheme molokai
 
 " Turn on the WiLd menu
 set wildmenu
@@ -54,8 +56,8 @@ vnoremap [  <ESC>`>a]<ESC>`<i[<ESC>
 vnoremap ]  <ESC>`>a]<ESC>`<i[<ESC>
 
 " change tab with Alt + arrow
-map <M-Right> :tabprev<cr>
-map <M-Left> :tabnext<cr>
+map ¬ :tabnext<cr>
+map ˙ :tabprev<cr>
 
 " Height of the command bar
 set cmdheight=2

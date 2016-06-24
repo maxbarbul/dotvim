@@ -23,6 +23,15 @@ Plugin 'L9'
 Plugin 'corntrace/bufexplorer'
 Plugin 'tpope/vim-fugitive'
 
+Plugin 'vim-airline/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
+
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'altercation/vim-colors-solarized'
+let g:solarized_termcolors=256
+
+Plugin 'tomasr/molokai'
+
 " Emmet zencoding
 Plugin 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
@@ -93,7 +102,7 @@ Bundle "pangloss/vim-javascript"
 " let g:javascript_enable_domhtmlcss=1
 
 " colorscheme iceberg
-Bundle "cocopon/iceberg.vim"
+" Bundle "cocopon/iceberg.vim"
 
 " Bundle "ervandew/supertab"
 Bundle "chikamichi/mediawiki.vim"
@@ -135,7 +144,7 @@ function! s:my_cr_function()
 	"return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
