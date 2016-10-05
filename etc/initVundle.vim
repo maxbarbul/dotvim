@@ -30,6 +30,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 let g:solarized_termcolors=256
 
+Bundle 'airblade/vim-gitgutter'
+
 Plugin 'tomasr/molokai'
 
 " Emmet zencoding

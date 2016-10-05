@@ -143,6 +143,8 @@ set laststatus=2
 
 highlight ColorColumn ctermbg=black guibg=#592929
 
+runtime! ftplugin/man.vim
+
 " Format the status line
 "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ #%l\ %{fugitive#statusline()}
@@ -221,13 +223,16 @@ set incsearch
 set ignorecase
 set smartcase
 
-noremap <silent> <C-m>          :!node %<CR>
+noremap <silent> <C-m> :!node %<CR>
 
 " remove '-' (dash) and '$' from beign a part of a keyword in source code
 set isk-=-
 set isk-=$
 
 set cdpath=/home/maksym/work,/home/maksym
+
+" if opens several buffers -> open in vertical splits
+silent vertical sball 4
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
