@@ -1,6 +1,6 @@
-set VIM_DIR=~/.vim
+VIM_DIR=$HOME/.vim
 
 mkdir bundle
 git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim
-ln -s $VIM_DIR/etc/_vimrc ~/.vimrc
-ln -s $VIM_DIR/etc/_gvimrc ~/.gvimrc
+ln -s $VIM_DIR/etc/_vimrc $HOME/.vimrc
+ln -s $VIM_DIR/etc/_gvimrc $HOME/.gvimrc
