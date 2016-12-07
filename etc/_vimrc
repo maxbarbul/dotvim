@@ -35,11 +35,10 @@ set ruler
 
 " relative line numbers
 set relativenumber
+set number
 
 " show matching bracket for 0.2 seconds
 set matchtime=2
-" specially for html
-set matchpairs+=<:>
 
 " If you have something highlighted and type a, 
 " it replaces the text, like other editors. 
@@ -56,8 +55,8 @@ vnoremap [  <ESC>`>a]<ESC>`<i[<ESC>
 vnoremap ]  <ESC>`>a]<ESC>`<i[<ESC>
 
 " change tab with Alt + arrow
-map ¬ :tabnext<cr>
-map ˙ :tabprev<cr>
+" map ¬ :tabnext<cr>
+" map ˙ :tabprev<cr>
 
 " Height of the command bar
 set cmdheight=2
@@ -124,8 +123,20 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 
+set pastetoggle=<F2>
+nnoremap ; :
+
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
 " Close all the buffers
 map <leader>ba :1,1000 bd!<cr>
+
+" easy vimrc editing
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
@@ -142,26 +153,19 @@ set viminfo^=%
 set laststatus=2
 
 highlight ColorColumn ctermbg=black guibg=#592929
+highlight MatchParen cterm=bold ctermbg=none ctermfg=magenta
 
 runtime! ftplugin/man.vim
 
 " Format the status line
 "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ #%l\ %{fugitive#statusline()}
+" set statusline=\ %{HasPaste()}%t%m%r%h\ %w\ \ #%l
 
 " Delete trailing white space on save
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `zmz"
-endfunc
-
-autocmd BufWrite *.js :call DeleteTrailingWS()
 autocmd BufWrite *.css :call DeleteTrailingWS()
 autocmd BufWrite *.less :call DeleteTrailingWS()
 " autocmd BufWrite *.py :call DeleteTrailingWS()
 " autocmd BufWrite *.php :call DeleteTrailingWS()
-autocmd BufWrite *.html :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 autocmd BufWrite *.markdown :call DeleteTrailingWS()
 
@@ -182,11 +186,6 @@ map <leader>j :vimgrep // **/*.js<left><left><left><left><left><left><left><left
 
 " Open vimgrep and put the cursor in the right position
 map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
-map <leader>b :BufExplorerVerticalSplit<CR>
-" Focus on current file in NERDTree
-map <leader>r :NERDTreeFind<cr>
-map <leader>n :NERDTreeToggle<cr>
 
 " Vimgreps in the current file
 map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
@@ -223,7 +222,8 @@ set incsearch
 set ignorecase
 set smartcase
 
-noremap <silent> <C-m> :!node %<CR>
+" noremap <silent> <C-e> :call PlaySound()<CR>
+autocmd CursorMovedI * call PlaySound()
 
 " remove '-' (dash) and '$' from beign a part of a keyword in source code
 set isk-=-
@@ -233,9 +233,16 @@ set cdpath=/home/maksym/work,/home/maksym
 
 " if opens several buffers -> open in vertical splits
 silent vertical sball 4
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `zmz"
+endfunc
+
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
@@ -274,6 +281,7 @@ endfunction
 
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
+
 function! <SID>BufcloseCloseIt()
    let l:currentBufNum = bufnr("%")
    let l:alternateBufNum = bufnr("#")
@@ -291,5 +299,9 @@ function! <SID>BufcloseCloseIt()
    if buflisted(l:currentBufNum)
      execute("bdelete! ".l:currentBufNum)
    endif
+endfunction
+
+function! PlaySound()
+  silent! execute '!play -q ~/.vim/support/shotgun.mp3 &' | :redraw!
 endfunction
 

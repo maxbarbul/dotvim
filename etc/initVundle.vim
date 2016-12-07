@@ -19,17 +19,52 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'scrooloose/nerdtree'
+" Focus on current file in NERDTree
+map <leader>r :NERDTreeFind<cr>
+map <leader>n :NERDTreeToggle<cr>
+
 Plugin 'L9'
 Plugin 'corntrace/bufexplorer'
+map <leader>b :BufExplorerVerticalSplit<CR>
+
 Plugin 'tpope/vim-fugitive'
+Plugin 'edkolev/promptline.vim'
+let g:promptline_theme = 'airline'
 
 Plugin 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamecollapse = 1
+
+" let g:airline_section_c = '%t'
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
 
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 let g:solarized_termcolors=256
 
+Plugin 'editorconfig/editorconfig-vim'
 Bundle 'airblade/vim-gitgutter'
 
 Plugin 'tomasr/molokai'
@@ -40,6 +75,8 @@ let g:user_emmet_install_global = 0
 " javascript FileType is for JSX files
 autocmd FileType html,css,javascript EmmetInstall
 let g:user_emmet_leader_key='<C-Z>'
+
+Plugin 'vim-ctrlspace/vim-ctrlspace'
 
 Plugin 'TaskList.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -52,10 +89,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" set local eslint to run linter
-let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
-let g:syntastic_javascript_eslint_exec = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+let g:syntastic_auto_loc_list = 1
 
 let g:syntastic_enable_signs = 1
 let g:syntastic_check_on_open = 1
@@ -65,15 +99,30 @@ let g:syntastic_style_error_symbol = ">"
 let g:syntastic_warning_symbol = "!"
 let g:syntastic_style_warning_symbol = ">"
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_aggregate_errors = 1
+let g:syntastic_aggregate_errors = 0
 let g:syntastic_filetype_map = { "javascript.jsx": "javascript" }
 
+if findfile('.eslintrc', '.;') != ''
+  let b:syntastic_checkers = ['eslint']
+  " conditionally loading `eslint` seems to break so let's always assume we
+  " have it locally until we can figure this out.
+  let b:syntastic_javascript_eslint_exec = '`npm bin`/eslint'
+else
+  let b:syntastic_checkers = ['standard']
 
+  " Point syntastic checker at locally installed `standard` if it exists.
+  " https://github.com/scrooloose/syntastic/issues/1571#issuecomment-146630051
+  if executable('`npm bin`/standard')
+    let b:syntastic_javascript_standard_exec = '`npm bin`/standard'
+  endif
+endif
 
 Bundle "kien/ctrlp.vim"
 let g:ctrlp_mruf_max = 250
 let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_max_depth = 7
 
 
 Bundle "tpope/vim-surround"
@@ -164,7 +213,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
-	let g:neocomplete#sources#omni#input_patterns = {}
+  let g:neocomplete#sources#omni#input_patterns = {}
 endif
 
 " For perlomni.vim setting.
