@@ -133,6 +133,8 @@ map <right> <nop>
 
 " Close all the buffers
 map <leader>ba :1,1000 bd!<cr>
+" list buffers
+map <leader>b :ls<cr>
 
 " easy vimrc editing
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
