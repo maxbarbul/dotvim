@@ -227,7 +227,7 @@ set ignorecase
 set smartcase
 
 " noremap <silent> <C-e> :call PlaySound()<CR>
-autocmd CursorMovedI * call PlaySound()
+" autocmd CursorMovedI * call PlaySound()
 
 " remove '-' (dash) and '$' from beign a part of a keyword in source code
 set isk-=-
