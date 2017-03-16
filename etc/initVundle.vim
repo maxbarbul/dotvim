@@ -117,9 +117,9 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " distraction-free writing mode
 " Bundle "junegunn/goyo.vim"
 " creates directories on the path to created file
-" Bundle 'duggiefresh/vim-easydir'
+Bundle 'duggiefresh/vim-easydir'
 " Markers display in gutter
-" Bundle "kshenoy/vim-signature"
+Bundle "kshenoy/vim-signature"
 " Javascript syntax and indentation
 Bundle "pangloss/vim-javascript"
 " Enables HTML/CSS syntax highlighting in your JavaScript file.
@@ -127,6 +127,8 @@ Bundle "pangloss/vim-javascript"
 
 " colorscheme iceberg
 " Bundle "cocopon/iceberg.vim"
+
+Plugin 'EasyMotion'
 
 " Bundle "ervandew/supertab"
 Bundle "chikamichi/mediawiki.vim"
