@@ -3,6 +3,8 @@
 setlocal wrap linebreak
 setlocal textwidth=0
 
+set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words
+
 " No auto-wrap at all.
 setlocal formatoptions-=tc formatoptions+=l
 if v:version >= 602 | setlocal formatoptions-=a | endif
@@ -48,4 +50,4 @@ inoremap <buffer> <silent> = <C-R>=(getline('.')==''\|\|getline('.')=~'^=\+$')?"
 
 " Enable folding based on ==sections==
 setlocal foldexpr=getline(v:lnum)=~'^\\(=\\+\\)[^=]\\+\\1\\(\\s*<!--.*-->\\)\\=\\s*$'?\">\".(len(matchstr(getline(v:lnum),'^=\\+'))-1):\"=\"
-setlocal fdm=expr
+setlocal foldmethod=expr

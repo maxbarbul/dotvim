@@ -1,148 +1,53 @@
+set nocompatible
 let mapleader = ","
 
-"run plugins manager Vundle
-source ~/.vim/etc/initVundle.vim
-source ~/.vim/etc/functions.vim
-source ~/.vim/etc/mapping.vim
+source ~/.vim/etc/initVundle.vim "run plugins manager Vundle
+source ~/.vim/etc/filetypes.vim " Manual filetype setting
+source ~/.vim/etc/functions.vim " Function definitions
+source ~/.vim/etc/mapping.vim " All keybinding not related to plugins
+source ~/.vim/etc/env.vim " Some path's and project settings
+source ~/.vim/etc/interface.vim " Editor interface behavior and look
 
-set mouse=a
-set so=7
-set mousehide  " Hide mouse after chars typed
-
-set t_Co=256
-" let g:molokai_original = 1
 syntax on
-" colorscheme molokai
-set background=dark
-" colorscheme solarized
-colorscheme molokai
-
-" Turn on the WiLd menu
-set wildmenu
-set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn,*.png,*.gif,*.jpg,*.zip
-
-highlight ColorColumn ctermbg=3
-
-set cursorline
-
-" Make nerdtree of size 40 cols
-let g:NERDTreeWinSize = 40
-
-" show mode in status bar (insert/replace/...)
-set showmode
-" show typed command in status bar
-set showcmd
-" show cursor position in status bar
-set ruler
-
-" relative line numbers
-set relativenumber
-set number
-
-" show matching bracket for 0.2 seconds
-set matchtime=2
-
-" Height of the command bar
-set cmdheight=2
-
-" A buffer becomes hidden when it is abandoned
-set hidden
-
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
+set synmaxcol=300
+set omnifunc=syntaxcomplete#Complete " Enable omnicompletion
+set nobackup " Turn permanent backup off
+set writebackup " Create backup files for no saved buffers, then remove them on save
 set noswapfile
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
-" set noexpandtab
-
-" Be smart when using tabs ;)
-set smarttab
-
-" 1 tab == 2 spaces
-set shiftwidth=2
+set expandtab " Use spaces instead of tabs
+set smarttab " Be smart when using tabs ;)
+set shiftwidth=2 " 1 tab == 2 spaces
 set tabstop=2
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-set ai "Auto indent
-set si "Smart indent
+set linebreak " Line break on 500 characters
+set textwidth=500
+set autoindent " Auto indent
+set smartindent " Smart indent
 set nowrap "Wrap lines
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
-" Return to last edit position when opening files (You want this!)
+" Return to last edit position when opening files
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
-" Remember info about open buffers on close
-set viminfo^=%
-
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
-" Always show the status line
-set laststatus=2
-
-highlight ColorColumn ctermbg=black guibg=#592929
-highlight MatchParen cterm=bold ctermbg=none ctermfg=magenta
-
-runtime! ftplugin/man.vim
-
-" Format the status line
-"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-" set statusline=\ %{HasPaste()}%t%m%r%h\ %w\ \ #%l
 
 " Delete trailing white space on save
 autocmd BufWrite *.css :call DeleteTrailingWS()
 autocmd BufWrite *.less :call DeleteTrailingWS()
-" autocmd BufWrite *.py :call DeleteTrailingWS()
-" autocmd BufWrite *.php :call DeleteTrailingWS()
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.php :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 autocmd BufWrite *.markdown :call DeleteTrailingWS()
 
-"autocmd InsertEnter *.* :colorscheme Mustang
-"autocmd InsertLeave *.* :colorscheme molokai
-
-au BufRead,BufNewFile {*.md,*.mkd,*.markdown} set ft=markdown
-au BufRead,BufNewFile {COMMIT_EDITMSG} set ft=gitcommit
-
-au! BufRead,BufNewFile *.csv,*.dat    setfiletype csv
-
-" turn on searhc highlight
-set hlsearch
-" serach while typing
-set incsearch
-
-" case for search
+set hlsearch " turn on search highlight
+set incsearch " search while typing
 set ignorecase
 set smartcase
+set iskeyword-=- " remove '-' (dash) from being a part of a keyword in source code
+set iskeyword-=$ " remove '$' from being a part of a keyword in source code
+
+set complete+=k " Set completion to also dictionary
+" File type specific dictionaries
+autocmd FileType * execute 'setlocal dict+=~/.vim/dict/'.&filetype.'.dict'
 
 " autocmd CursorMovedI * call PlaySound()
-
-" remove '-' (dash) and '$' from beign a part of a keyword in source code
-set isk-=-
-set isk-=$
-
-set cdpath=/home/maksym/work,/home/maksym
-
-" if opens several buffers -> open in vertical splits
-" silent vertical sball 4
-

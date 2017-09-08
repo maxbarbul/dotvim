@@ -1,18 +1,11 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `zmz"
-endfunc
-
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
+function! DeleteTrailingWS()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
 endfunction
 
+" Don't know what it is
 function! VisualSelection(direction) range
     let l:saved_reg = @"
     execute "normal! vgvy"
@@ -33,7 +26,6 @@ function! VisualSelection(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
-
 
 " Returns true if paste mode is enabled
 function! HasPaste()
@@ -65,8 +57,8 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
+" Plays sound file. Used it to bind keypress to play a short and fun sound
 function! PlaySound()
   silent! execute '!play -q ~/.vim/support/shotgun.mp3 &' | :redraw!
 endfunction
-
 

@@ -1,3 +1,11 @@
+nnoremap ; :
+
+" Disable arrow keys
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
 " If you have something highlighted and type a, 
 " it replaces the text, like other editors. 
 " If you type (, however, it wraps the selected 
@@ -6,24 +14,19 @@ vnoremap (  <ESC>`>a)<ESC>`<i(<ESC>
 vnoremap )  <ESC>`>a)<ESC>`<i(<ESC>
 vnoremap {  <ESC>`>a}<ESC>`<i{<ESC>
 vnoremap }  <ESC>`>a}<ESC>`<i{<ESC>
-"vnoremap "  <ESC>`>a"<ESC>`<i"<ESC>
+vnoremap "  <ESC>`>a"<ESC>`<i"<ESC>
 vnoremap '  <ESC>`>a'<ESC>`<i'<ESC>
 vnoremap `  <ESC>`>a`<ESC>`<i`<ESC>
 vnoremap [  <ESC>`>a]<ESC>`<i[<ESC>
 vnoremap ]  <ESC>`>a]<ESC>`<i[<ESC>
-
-" change tab with Alt + arrow
-" map ¬ :tabnext<cr>
-" map ˙ :tabprev<cr>
 
 " Empty line before
 nmap [<Space> O<Esc>j
 " Empty line after
 nmap ]<Space> o<Esc>k
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+" Map <Space> to / (search)
 map <space> /
-map <c-space> ?
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -33,21 +36,29 @@ map <C-l> <C-W>l
 
 " nmap <leader><tab> :set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<<cr>:set list<cr>
 " Close the current buffer
-map <leader>bd :Bclose<cr>
+map <leader>q :Bclose<cr>
 
+" Open Netrw in vertical split
+map <leader>v :Vex<cr>
+map <leader>e :Ex<cr>
+
+" Quick cd to the folder of current file
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+
+" Toggle paste mode on and off
 set pastetoggle=<F2>
-nnoremap ; :
-noremap <tab> <Esc>
-
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
 
 " Close all the buffers
 map <leader>ba :1,1000 bd!<cr>
 " list buffers
 map <leader>b :ls<cr>
+
+" list tabs
+map <leader>t :tabs<cr>
+" tabnew
+map <leader>tn :tabnew<cr>
+" tabclose
+map <leader>tc :tabclose<cr>
 
 " easy vimrc editing
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -84,10 +95,10 @@ map <leader>sa zg
 map <leader>s? z=
 
 " Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
+map <leader>n :e ~/temp/notes.md<cr>
 
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+" Open vim help for current word
+map <leader>h :help <c-r><c-w><cr>
 
 " Toggle highlight of search
 noremap <F4> :set hlsearch! hlsearch?<CR>
