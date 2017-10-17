@@ -1,11 +1,11 @@
 #require
 snippet req
-	require('${0}');
+	require('${0}')
 # Prototype
 snippet proto
 	${1:class_name}.prototype.${2:method_name} = function (${3:first_argument}) {
 		${4}
-	};
+	}
 # Function
 snippet fun
 	function ${1:function_name}(${2:argument}) {
@@ -49,7 +49,7 @@ snippet switch
 	switch (${1:expression}) {
 		case '${3:case}':
 			${4:// code}
-			break;
+			break
 		${5}
 		default:
 			${2:// code}
@@ -58,7 +58,7 @@ snippet switch
 snippet case
 	case '${1}':
 		${2}
-		break;
+		break
 	${3}
 # for (...) {...}
 snippet for
@@ -86,7 +86,7 @@ snippet try
 snippet do
 	do {
 		${2:/* code */}
-	} while (${1:/* condition */});
+	} while (${1:/* condition */})
 # Class Method
 snippet :f
 	${1:method_name}(${2:attribute}) {
@@ -109,7 +109,7 @@ snippet set
 	}
 # setTimeout function
 snippet timeout
-	setTimeout(function() {${3}}${2}, ${1:10});
+	setTimeout(function() {${3}}${2}, ${1:10})
 # console.info
 snippet ci
 	// XXX DEBUG
@@ -117,18 +117,18 @@ snippet ci
 # console.warn
 snippet cw
 	// XXX DEBUG
-	console.warn(${1});
+	console.warn(${1})
 # console.time
 snippet ct
 	// XXX DEBUG
-	console.time('${1}');
+	console.time('${1}')
 # console.log
 snippet cl
 	// XXX DEBUG
-	console.log(${1});
+	console.log(${1})
 # console.error
 snippet ce
-	console.error(${1});
+	console.error(${1})
 # return
 snippet ret
 	return ${1:result}
@@ -161,11 +161,11 @@ snippet =>{
 snippet .fil
 	.filter((${1:item}${2:, index}${3:, array}) => {
 		if (${4}) {
-			return true;
+			return true
 		}
 
-		return false;
-	});
+		return false
+	})
 # hasOwnProperty
 snippet has
 	hasOwnProperty(${1})
@@ -201,10 +201,10 @@ snippet @me
 	@method ${1}
 # JSON.parse
 snippet jsonp
-	JSON.parse(${1:jstr});
+	JSON.parse(${1:jstr})
 # JSON.stringify
 snippet jsons
-	JSON.stringify(${1:object});
+	JSON.stringify(${1:object})
 # self-defining function
 snippet sdf
 	const ${1:function_name} = function (${2:argument}) {
@@ -212,28 +212,28 @@ snippet sdf
 
 		$1 = function ($2) {
 			${4:// main code}
-		};
+		}
 	}
 # this.
 snippet t
 	this.${0}
 # throw Error
 snippet thr
-	throw new Error('${0}');
+	throw new Error('${0}')
 snippet thro
-	throw new Error('${0}');
+	throw new Error('${0}')
 snippet throw
-	throw new Error('${0}');
+	throw new Error('${0}')
 # describe
 snippet desc
 	describe('${1}', () => {
 		${0}
-	});
+	})
 # test
 snippet it
 	it('${1}', () => {
 		${0}
-	});
+	})
 # test exception throwing
 snippet itthr
 	it('${1}', () => {
@@ -246,27 +246,27 @@ snippet itthr
 			-100,
 			0,
 			100${4}
-		];
+		]
 
 		for (let i = 0; i < invalidArguments.length; i += 1) {
 			assert.throws(
 				function (arg) {
-					${2}(arg);
+					${2}(arg)
 				}.bind(this, invalidArguments[i]),
 				Error,
 				null,
 				'Exception was not thrown ${3} equal to ' + invalidArguments[i]
-			);
+			)
 		}
-	});
+	})
 
 snippet component
-	import * as React from "react";
-	import {t} from "../../../common/locale";
+	import * as React from 'react'
+	import {t} from '../../../common/locale'
 
 	export default class ${1} extends React.PureComponent {
 		static defaultProps = {
-		};
+		}
 
 		render() {
 			${2}

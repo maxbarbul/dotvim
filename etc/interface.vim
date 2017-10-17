@@ -21,6 +21,8 @@ set visualbell
 set t_vb=
 set tm=500
 set laststatus=2 " Always show the status line
+set fillchars-=vert:|
+set fillchars+=vert:│
 highlight ColorColumn ctermbg=3
 highlight ColorColumn ctermbg=black guibg=#592929
 highlight MatchParen cterm=bold ctermbg=none ctermfg=magenta

@@ -25,6 +25,21 @@ function! AirLineCustom()
 endfunction
 autocmd VimEnter * call AirLineCustom()
 
+Plugin 'scrooloose/nerdtree'
+let g:NERDTreeShowIgnoredStatus = 1
+" Plugin 'Xuyuanp/nerdtree-git-plugin'
+" let g:NERDTreeIndicatorMapCustom = {
+"     \ "Modified"  : "✹",
+"     \ "Staged"    : "✚",
+"     \ "Untracked" : "✭",
+"     \ "Renamed"   : "➜",
+"     \ "Unmerged"  : "═",
+"     \ "Deleted"   : "✖",
+"     \ "Dirty"     : "✗",
+"     \ "Clean"     : "✔︎",
+"     \ 'Ignored'   : '☒',
+"     \ "Unknown"   : "?"
+"     \ }
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 let g:solarized_termcolors=256
@@ -73,6 +88,11 @@ let g:syntastic_filetype_map = { 'javascript.jsx': 'javascript' }
 "   endif
 " endif
 
+Plugin 'kien/rainbow_parentheses.vim'
+autocmd VimEnter * RainbowParenthesesToggle
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
 Plugin 'kien/ctrlp.vim'
 let g:ctrlp_mruf_max = 250
 let g:ctrlp_use_caching = 1
@@ -96,7 +116,7 @@ vnoremap // :TComment<CR>
 
 """"""" NEW BUNDLES
 
-
+Plugin 'jparise/vim-graphql'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-utils/vim-interruptless'
 Plugin 'bruno-/vim-most-minimal-folds'

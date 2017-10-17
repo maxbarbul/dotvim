@@ -95,7 +95,7 @@ map <leader>sa zg
 map <leader>s? z=
 
 " Quickly open a buffer for scripbble
-map <leader>n :e ~/temp/notes.md<cr>
+map <leader>~ :e ~/temp/notes.md<cr>
 
 " Open vim help for current word
 map <leader>h :help <c-r><c-w><cr>
@@ -104,3 +104,6 @@ map <leader>h :help <c-r><c-w><cr>
 noremap <F4> :set hlsearch! hlsearch?<CR>
 
 " noremap <silent> <C-e> :call PlaySound()<CR>
+
+map <leader>n :NERDTreeToggle<cr>
+map <leader>r :NERDTreeFind<cr>
