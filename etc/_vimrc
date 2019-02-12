@@ -15,6 +15,7 @@ set nobackup " Turn permanent backup off
 set writebackup " Create backup files for no saved buffers, then remove them on save
 set noswapfile
 set expandtab " Use spaces instead of tabs
+" set noexpandtab " Use tabs
 set smarttab " Be smart when using tabs ;)
 set shiftwidth=2 " 1 tab == 2 spaces
 set tabstop=2
