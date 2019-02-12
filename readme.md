@@ -17,7 +17,7 @@ Note: read `init.sh` for more details on installation.
    - interface.vim - settings related to interface, colors, theme, mouse, keyboard, etc.
    - mapping.vim - all my mappings, some mappings are done also by pluggins.
    - pluggins.vim - pluggins setup and configuration.
-   - wiki.vim - settings for markdown filetype (TODO move to `ftpluggin` folder)
+   - wiki.vim - settings for markdown filetype
  - bundle - installation folder for pluggins managed by Vundle.
  - colors - color schemas
  - dict - semi-manual created keyword dictionaries for used languages.
@@ -25,3 +25,8 @@ Note: read `init.sh` for more details on installation.
  - snippets - custom snippets
  - spell - custom spelling dictionaries
  - support - some garbage.
+
+# TODO
+
+- Integrate .textedit config and remove or reset some editing related settings, such as spaces/tabs.
+- Move `etc/wiki.vim` to `ftplugin/wiki.vim` or markdown.vim.
