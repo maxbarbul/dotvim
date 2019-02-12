@@ -25,8 +25,9 @@ function! AirLineCustom()
 endfunction
 autocmd VimEnter * call AirLineCustom()
 
-Plugin 'scrooloose/nerdtree'
-let g:NERDTreeShowIgnoredStatus = 1
+" Plugin 'scrooloose/nerdtree'
+" let g:NERDTreeShowIgnoredStatus = 1
+
 " Plugin 'Xuyuanp/nerdtree-git-plugin'
 " let g:NERDTreeIndicatorMapCustom = {
 "     \ "Modified"  : "✹",
@@ -88,16 +89,25 @@ let g:syntastic_filetype_map = { 'javascript.jsx': 'javascript' }
 "   endif
 " endif
 
-Plugin 'kien/rainbow_parentheses.vim'
-autocmd VimEnter * RainbowParenthesesToggle
-autocmd Syntax * RainbowParenthesesLoadRound
-autocmd Syntax * RainbowParenthesesLoadSquare
-autocmd Syntax * RainbowParenthesesLoadBraces
+" Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'prettier/vim-prettier'
+let g:prettier#autoformat = 0 " Disable auto formatting of files that have '@format' tag
+let g:prettier#exec_cmd_async = 1 " forced to run async
+let g:prettier#quickfix_auto_focus = 0 " disable quickfix focus on errors
+
+
+Plugin 'luochen1990/rainbow'
+let g:rainbow_active = 1
+" autocmd VimEnter * RainbowParenthesesToggle
+" autocmd Syntax * RainbowParenthesesLoadRound
+" autocmd Syntax * RainbowParenthesesLoadSquare
+" autocmd Syntax * RainbowParenthesesLoadBraces
+
 Plugin 'kien/ctrlp.vim'
 let g:ctrlp_mruf_max = 250
 let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = '\v[\/](\.git|node_modules|coverage|build|doc)$'
 let g:ctrlp_max_depth = 7
 Plugin 'ternjs/tern_for_vim'
 Plugin 'tpope/vim-surround'
@@ -106,12 +116,6 @@ nnoremap <leader>/ :TComment<CR>
 vnoremap <leader>/ :TComment<CR>
 nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
-
-
-
-
-
-
 
 
 """"""" NEW BUNDLES
@@ -127,7 +131,17 @@ Plugin 'othree/javascript-libraries-syntax.vim' " support of JS libraries API
 let g:used_javascript_libs = 'underscore,react'
 Plugin 'tmhedberg/matchit'
 Plugin 'mxw/vim-jsx' " Support for JSX syntax
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:jsx_ext_required = 1 " Allow JSX in normal JS files
+Plugin 'leafgarland/typescript-vim'
+let g:typescript_opfirst='\%([<>=,?^%|*/&]\|\([-:+]\)\1\@!\|!=\|in\%(stanceof\)\=\>\)'
+
+" TypeScript server integration for completion and tags
+Plugin 'Quramy/tsuquyomi'
+let g:tsuquyomi_single_quote_import	= 1
+let g:tsuquyomi_semicolon_import = 0
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
+
 Plugin 'kshenoy/vim-signature' " Markers display in gutter
 Plugin 'pangloss/vim-javascript' " Javascript syntax and indentation
 " let g:javascript_enable_domhtmlcss=1 " Enables HTML/CSS syntax highlighting in your JavaScript file.
@@ -163,7 +177,6 @@ Plugin 'chrisbra/Colorizer'
 
 Plugin 'gabrielelana/vim-markdown'
 Plugin 'godlygeek/tabular'
-
 
 
 

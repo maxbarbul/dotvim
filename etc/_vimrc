@@ -1,7 +1,7 @@
 set nocompatible
 let mapleader = ","
 
-source ~/.vim/etc/initVundle.vim "run plugins manager Vundle
+source ~/.vim/etc/plugins.vim "run plugins manager Vundle
 source ~/.vim/etc/filetypes.vim " Manual filetype setting
 source ~/.vim/etc/functions.vim " Function definitions
 source ~/.vim/etc/mapping.vim " All keybinding not related to plugins
