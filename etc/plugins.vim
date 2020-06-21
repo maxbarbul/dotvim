@@ -120,24 +120,25 @@ vnoremap // :TComment<CR>
 
 """"""" NEW BUNDLES
 
-Plugin 'jparise/vim-graphql'
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-utils/vim-interruptless'
-Plugin 'bruno-/vim-most-minimal-folds'
-let g:most_minimal_folds_line_count = 1
-Plugin 'vim-utils/vim-man'
+" Plugin 'jparise/vim-graphql'
+" Plugin 'majutsushi/tagbar'
+" Plugin 'vim-utils/vim-interruptless'
+" Plugin 'bruno-/vim-most-minimal-folds'
+" let g:most_minimal_folds_line_count = 1
+" Plugin 'vim-utils/vim-man'
 Plugin 'moll/vim-node'
-Plugin 'othree/javascript-libraries-syntax.vim' " support of JS libraries API
-let g:used_javascript_libs = 'underscore,react'
+" Plugin 'othree/javascript-libraries-syntax.vim' " support of JS libraries API
+" let g:used_javascript_libs = 'underscore,react'
 Plugin 'tmhedberg/matchit'
-Plugin 'mxw/vim-jsx' " Support for JSX syntax
-let g:jsx_ext_required = 1 " Allow JSX in normal JS files
-Plugin 'leafgarland/typescript-vim'
-let g:typescript_opfirst='\%([<>=,?^%|*/&]\|\([-:+]\)\1\@!\|!=\|in\%(stanceof\)\=\>\)'
+" Plugin 'mxw/vim-jsx' " Support for JSX syntax
+" let g:jsx_ext_required = 1 " Allow JSX in normal JS files
+" Plugin 'leafgarland/typescript-vim'
+" let g:typescript_opfirst='\%([<>=,?^%|*/&]\|\([-:+]\)\1\@!\|!=\|in\%(stanceof\)\=\>\)'
 
 " TypeScript server integration for completion and tags
 Plugin 'Quramy/tsuquyomi'
 let g:tsuquyomi_single_quote_import	= 1
+let g:tsuquyomi_completion_detail = 1
 let g:tsuquyomi_semicolon_import = 0
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
@@ -177,6 +178,7 @@ Plugin 'chrisbra/Colorizer'
 
 Plugin 'gabrielelana/vim-markdown'
 Plugin 'godlygeek/tabular'
+Plugin 'mileszs/ack.vim'
 
 
 

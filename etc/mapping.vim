@@ -70,6 +70,8 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSelection('gv')<CR>
 
+map <leader>a :Ack  .<left><left>
+
 " Open vimgrep and put the cursor in the right position
 map <leader>j :vimgrep // **/*.js<left><left><left><left><left><left><left><left><left>
 

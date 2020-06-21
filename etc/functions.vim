@@ -57,6 +57,16 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
+function! ToggleVerbose()
+  if !&verbose
+    set verbosefile=/usr/local/var/log/vim.verbose.log
+    set verbose=15
+  else
+    set verbose=0
+    set verbosefile=
+  endif
+endfunction
+
 " Plays sound file. Used it to bind keypress to play a short and fun sound
 function! PlaySound()
   silent! execute '!play -q ~/.vim/support/shotgun.mp3 &' | :redraw!
